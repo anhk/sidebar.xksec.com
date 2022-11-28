@@ -1,6 +1,5 @@
 const { createRouter, createWebHistory } = require("vue-router")
 
-
 export const mainRoutes = {
     path: '/',
     component: () => import('../components/layout.vue'),
