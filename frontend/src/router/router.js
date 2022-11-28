@@ -12,8 +12,8 @@ export const mainRoutes = {
             meta: { title: '首页' },
         },
         {
-            path:'/user',
-            component:()=>import('../view/user.vue')
+            path: '/user',
+            component: () => import('../view/user.vue')
         }
     ]
 }
