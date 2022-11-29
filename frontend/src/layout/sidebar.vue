@@ -140,6 +140,7 @@ export default {
     display: none;
 }
 
+
 /* el-memu-item 关闭右边的小三角 */
 .el-sub-menu :deep(.el-sub-menu__icon-arrow) {
     display: none;
@@ -163,5 +164,8 @@ export default {
 
 .sub-nav-links {
     background: #1d1b31;
+}
+.sub-nav-links.is-active {
+    background:#333399;
 }
 </style>
