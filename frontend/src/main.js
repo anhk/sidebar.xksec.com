@@ -4,7 +4,7 @@ import router from './router/router';
 import installElementPlus from './plugins/element'
 
 router.beforeEach((to) => {
-    document.title = `${to.meta.title} | NickyShell`;
+    document.title = `${to.meta.title} | XKSEC`;
 })
 
 const app = createApp(App)

@@ -1,13 +1,13 @@
 <template>
     <el-container>
-        <el-aside>
-            <sidebar/>
+        <el-aside :class="isCollapse ? 'el-aside-collapse':''">
+            <Sidebar :isCollapse="this.isCollapse" />
         </el-aside>
         <el-container>
             <el-header>
-                <div>aas</div>
+                <Header v-on:doCollapse="doCollapse"></Header>
             </el-header>
-            <el-main>
+            <el-main >
                 <router-view />
             </el-main>
         </el-container>
@@ -15,11 +15,24 @@
 </template>
 
 <script>
-import sidebar from "@/layout/sidebar";
+import Sidebar from "@/layout/sidebar";
+import Header from '@/layout/header'
+
 export default {
     name: "layout",
+    data() {
+        return {
+            isCollapse: false,
+        }
+    },
+    methods:{
+        doCollapse(isCollapse){
+            this.isCollapse = isCollapse
+        }
+    },
     components: {
-        sidebar
+        Sidebar,
+        Header,
     }
 }
 </script>
@@ -33,5 +46,12 @@ export default {
 
 .el-aside {
     width: 260px;
+}
+.el-aside.el-aside-collapse{
+    width: 78px;
+}
+
+.el-aside::-webkit-scrollbar {
+    display: none;
 }
 </style>

@@ -23,12 +23,12 @@ export const mainRoutes = {
                     path: '/users/roles',
                     meta: { title: '角色管理', menu: true },
                     component: () => import('../view/roles.vue'),
-                }   ,
+                },
                 {
-                    path:'/users/groups',
+                    path: '/users/groups',
                 }
             ]
-        }
+        },
     ]
 }
 
