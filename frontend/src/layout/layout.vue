@@ -1,13 +1,13 @@
 <template>
     <el-container>
-        <el-aside :class="isCollapse ? 'el-aside-collapse':''">
+        <el-aside :class="isCollapse ? 'el-aside-collapse' : ''">
             <Sidebar :isCollapse="this.isCollapse" />
         </el-aside>
         <el-container>
             <el-header>
                 <Header v-on:doCollapse="doCollapse"></Header>
             </el-header>
-            <el-main >
+            <el-main>
                 <router-view />
             </el-main>
         </el-container>
@@ -25,8 +25,8 @@ export default {
             isCollapse: false,
         }
     },
-    methods:{
-        doCollapse(isCollapse){
+    methods: {
+        doCollapse(isCollapse) {
             this.isCollapse = isCollapse
         }
     },
@@ -46,8 +46,10 @@ export default {
 
 .el-aside {
     width: 260px;
+    transition: all 0.5s ease;
 }
-.el-aside.el-aside-collapse{
+
+.el-aside.el-aside-collapse {
     width: 78px;
 }
 

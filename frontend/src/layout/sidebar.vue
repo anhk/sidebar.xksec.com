@@ -101,7 +101,7 @@ export default {
 .nav-links li i {
     height: 52px;
     min-width: 48px;
-    text-align:start;
+    text-align: start;
     line-height: 50px;
     padding: 0 0 0 10px;
     color: #fff;
@@ -132,14 +132,13 @@ export default {
 }
 
 .el-sub-menu :deep(.el-sub-menu__icon-arrow) {
-  display: none;
+    display: none;
 }
 
 .link_name {
     font-size: 18px;
     font-weight: 400;
     color: #fff;
-    transition: all 0.4s ease;
 }
 
 .sub_link_name {
@@ -148,7 +147,6 @@ export default {
     padding: 5px 0 0 30px;
     white-space: nowrap;
     opacity: 0.6;
-    transition: all 0.3s ease;
 }
 
 .sub-nav-links {
