@@ -2,7 +2,7 @@ const { createRouter, createWebHistory } = require("vue-router")
 
 export const mainRoutes = {
     path: '/',
-    component: () => import('../components/layout.vue'),
+    component: () => import('../layout/main.vue'),
     meta: { title: '整体页面布局' },
     children: [
         {
@@ -20,7 +20,7 @@ export const mainRoutes = {
 const routes = [
     { path: '/', redirect: '/dashboard' },
     mainRoutes,
-    { path: '/:catchAll(.*)', component: () => import('../components/404'), meta: { title: '404' } }
+    { path: '/:catchAll(.*)', component: () => import('../layout/404'), meta: { title: '404' } }
 ]
 
 const router = createRouter({

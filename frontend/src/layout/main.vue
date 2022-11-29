@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-aside>
-            <div>layout</div>
+            <sidebar/>
         </el-aside>
         <el-container>
             <el-header>
@@ -15,6 +15,13 @@
 </template>
 
 <script>
+import sidebar from "@/layout/sidebar";
+export default {
+    name: "main",
+    components: {
+        sidebar
+    }
+}
 </script>
 
 <style scoped>

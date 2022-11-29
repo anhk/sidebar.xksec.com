@@ -8,17 +8,18 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "boxicons": "^2.1.4",
     "core-js": "^3.6.5",
     "element-plus": "^2.2.6",
     "vue": "^3.0.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@volar-plugins/vetur": "latest",
     "@vue/cli-plugin-babel": "~4.5.15",
     "@vue/cli-plugin-eslint": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.0.0",
-    "@volar-plugins/vetur": "latest",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0"
