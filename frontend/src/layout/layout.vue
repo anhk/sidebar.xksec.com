@@ -50,7 +50,7 @@ export default {
 }
 
 .el-aside.el-aside-collapse {
-    width: 78px;
+    width: 68px;
 }
 
 .el-aside::-webkit-scrollbar {

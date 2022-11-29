@@ -12,14 +12,14 @@
                 <el-menu-item :index="item.path" v-if="item.children.length == 0">
                     <router-link :to="{ path: item.path }">
                         <i class='bx bxl-c-plus-plus'></i>
-                        <span v-if="!isCollapse" class="link_name">{{ item.meta.title }}</span>
+                        <span class="link_name">{{ item.meta.title }}</span>
                     </router-link>
                 </el-menu-item>
                 <!-- 有二级菜单的 -->
                 <el-sub-menu :index="index + ''" v-else>
                     <template v-slot:title>
                         <i class='bx bxl-c-plus-plus'></i>
-                        <span v-if="!isCollapse" class="link_name">{{ item.meta.title }}</span>
+                        <span class="link_name">{{ item.meta.title }}</span>
                     </template>
                     <el-menu-item v-for="(item_, index_) in item.children" :key="index_" :index="item_.path"
                         class="sub-nav-links">
@@ -77,7 +77,6 @@ export default {
     height: 100%;
     background: #11101d;
     z-index: 100;
-    transition: all 0.5s ease;
     user-select: none;
     padding: 0;
 }
@@ -107,15 +106,12 @@ export default {
     color: #fff;
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .logo-details .logo_name {
     font-size: 22px;
     color: #fff;
     font-weight: 600;
-    transition: 0.3s ease;
-    transition-delay: 0.1s;
     text-transform: uppercase;
 }
 
@@ -131,6 +127,20 @@ export default {
     text-decoration: none;
 }
 
+.el-aside.el-aside-collapse .el-sub-menu.is-opened .sub-nav-links {
+    display: none;
+}
+
+.el-aside .link_name {
+    transition: all 0.5s ease;
+    transition-delay: 0.2s;
+}
+
+.el-aside.el-aside-collapse .link_name {
+    display: none;
+}
+
+/* el-memu-item 关闭右边的小三角 */
 .el-sub-menu :deep(.el-sub-menu__icon-arrow) {
     display: none;
 }
@@ -139,6 +149,8 @@ export default {
     font-size: 18px;
     font-weight: 400;
     color: #fff;
+    transition: all 0.5s ease;
+    transition-delay: 0.2s;
 }
 
 .sub_link_name {
@@ -152,10 +164,4 @@ export default {
 .sub-nav-links {
     background: #1d1b31;
 }
-
-/*
-
-.sub_link_name a {
-    text-decoration: none;
-} */
 </style>
