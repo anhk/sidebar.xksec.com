@@ -2,17 +2,32 @@ const { createRouter, createWebHistory } = require("vue-router")
 
 export const mainRoutes = {
     path: '/',
-    component: () => import('../layout/main.vue'),
+    component: () => import('../layout/layout.vue'),
     meta: { title: '整体页面布局' },
     children: [
         {
             path: '/dashboard',
             component: () => import('../view/dashboard.vue'),
-            meta: { title: '首页' },
+            meta: { title: '首页', menu: true },
         },
         {
-            path: '/user',
-            component: () => import('../view/user.vue')
+            path: '/users',
+            meta: { title: '用户管理', menu: true },
+            children: [
+                {
+                    path: '/users/users',
+                    meta: { title: '用户管理', menu: true },
+                    component: () => import('../view/users.vue'),
+                },
+                {
+                    path: '/users/roles',
+                    meta: { title: '角色管理', menu: true },
+                    component: () => import('../view/roles.vue'),
+                }   ,
+                {
+                    path:'/users/groups',
+                }
+            ]
         }
     ]
 }

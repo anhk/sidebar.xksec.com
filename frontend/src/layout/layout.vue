@@ -17,7 +17,7 @@
 <script>
 import sidebar from "@/layout/sidebar";
 export default {
-    name: "main",
+    name: "layout",
     components: {
         sidebar
     }
