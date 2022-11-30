@@ -1,13 +1,8 @@
 <template>
     <div class="container">
         <div class="logo-details">
-            <!-- <i class='bx bxl-c-plus-plus'></i> -->
             <img class="logo" src="../assets/img/logo.png" />
             <img class="logo-name"  src="../assets/img/logo-name.png"/>
-            <!-- <div class="logo-content">
-                <span class="logo_name">xksec.com</span>
-                <span class="logo_subname">为您提供最优质的服务</span>
-            </div> -->
         </div>
 
         <el-menu :collapse="isCollapse" :default-active="defaultActive" mode="vertical" background-color="#11101d"
@@ -94,7 +89,6 @@ export default {
 }
 
 .logo-details .logo {
-    /* font-size: 30px; */
     color: #fff;
     height: 50px;
     width: 50px;
@@ -119,26 +113,6 @@ export default {
     font-size: 20px;
     cursor: pointer;
 }
-/* 
-.logo-details .logo-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.logo-details .logo_name {
-    font-size: 22px;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.logo-details .logo_subname {
-    font-size: 9px;
-    margin-top: -5px;
-    color: #fff;
-} */
 
 .el-menu {
     width: 100%;
