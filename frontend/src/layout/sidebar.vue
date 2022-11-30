@@ -1,8 +1,13 @@
 <template>
     <div class="container">
         <div class="logo-details">
-            <i class='bx bxl-c-plus-plus'></i>
-            <span class="logo_name">xksec.com</span>
+            <!-- <i class='bx bxl-c-plus-plus'></i> -->
+            <img class="logo" src="../assets/img/logo.png" />
+            <img class="logo-name"  src="../assets/img/logo-name.png"/>
+            <!-- <div class="logo-content">
+                <span class="logo_name">xksec.com</span>
+                <span class="logo_subname">为您提供最优质的服务</span>
+            </div> -->
         </div>
 
         <el-menu :collapse="isCollapse" :default-active="defaultActive" mode="vertical" background-color="#11101d"
@@ -88,13 +93,20 @@ export default {
     align-items: center;
 }
 
-.logo-details i {
-    font-size: 30px;
+.logo-details .logo {
+    /* font-size: 30px; */
     color: #fff;
     height: 50px;
-    min-width: 78px;
+    width: 50px;
+    margin: 0 8px 0 12px;
+    min-width: 50px;
     text-align: center;
     line-height: 50px;
+}
+
+.logo-details .logo-name{
+    width: calc(100% - 68px);
+    padding: 0 20px 0 10px;
 }
 
 .nav-links li i {
@@ -107,6 +119,13 @@ export default {
     font-size: 20px;
     cursor: pointer;
 }
+/* 
+.logo-details .logo-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .logo-details .logo_name {
     font-size: 22px;
@@ -114,6 +133,12 @@ export default {
     font-weight: 600;
     text-transform: uppercase;
 }
+
+.logo-details .logo_subname {
+    font-size: 9px;
+    margin-top: -5px;
+    color: #fff;
+} */
 
 .el-menu {
     width: 100%;
@@ -165,7 +190,8 @@ export default {
 .sub-nav-links {
     background: #1d1b31;
 }
+
 .sub-nav-links.is-active {
-    background:#333399;
+    background: #333399;
 }
 </style>
