@@ -2,7 +2,7 @@
     <div class="container">
         <div class="logo-details">
             <img class="logo" src="../assets/img/logo.png" />
-            <img class="logo-name"  src="../assets/img/logo-name.png"/>
+            <img class="logo-name" src="../assets/img/logo-name.png" />
         </div>
 
         <el-menu :collapse="isCollapse" :default-active="defaultActive" mode="vertical" background-color="#11101d"
@@ -11,14 +11,14 @@
                 <!-- 没有二级菜单的 -->
                 <el-menu-item :index="item.path" v-if="item.children.length == 0">
                     <router-link :to="{ path: item.path }">
-                        <i class='bx bxl-c-plus-plus'></i>
+                        <i class="bx" :class="item.meta.icon"></i>
                         <span class="link_name">{{ item.meta.title }}</span>
                     </router-link>
                 </el-menu-item>
                 <!-- 有二级菜单的 -->
                 <el-sub-menu :index="index + ''" v-else>
                     <template v-slot:title>
-                        <i class='bx bxl-c-plus-plus'></i>
+                        <i class="bx" :class="item.meta.icon"></i>
                         <span class="link_name">{{ item.meta.title }}</span>
                     </template>
                     <el-menu-item v-for="(item_, index_) in item.children" :key="index_" :index="item_.path"
@@ -91,16 +91,16 @@ export default {
 .logo-details .logo {
     color: #fff;
     height: 50px;
-    width: 50px;
+    width: 45px;
     margin: 0 8px 0 12px;
-    min-width: 50px;
+    min-width: 45px;
     text-align: center;
     line-height: 50px;
 }
 
-.logo-details .logo-name{
+.logo-details .logo-name {
     width: calc(100% - 68px);
-    padding: 0 20px 0 10px;
+    padding: 10px 20px 0 10px;
 }
 
 .nav-links li i {
@@ -108,9 +108,9 @@ export default {
     min-width: 48px;
     text-align: start;
     line-height: 50px;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 3px;
     color: #fff;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
 }
 

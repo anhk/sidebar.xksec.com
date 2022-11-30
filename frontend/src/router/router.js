@@ -8,11 +8,11 @@ export const mainRoutes = {
         {
             path: '/dashboard',
             component: () => import('../view/dashboard.vue'),
-            meta: { title: '首页', menu: true },
+            meta: { title: '首页', icon: "bx-home", menu: true },
         },
         {
             path: '/users',
-            meta: { title: '用户管理', menu: true },
+            meta: { title: '用户管理', icon: "bx-user", menu: true },
             children: [
                 {
                     path: '/users/users',
