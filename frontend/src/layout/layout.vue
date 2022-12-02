@@ -40,13 +40,18 @@ export default {
 <style scoped>
 .el-container,
 .el-main {
-    widows: 100%;
+    width: 100%;
     height: 100%;
+    background: #f5f7f9;
 }
 
 .el-aside {
     width: 260px;
     transition: all 0.5s ease;
+}
+
+.el-header{
+    background: #fff;
 }
 
 .el-aside.el-aside-collapse {
