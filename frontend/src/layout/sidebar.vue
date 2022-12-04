@@ -65,7 +65,6 @@ export default {
     },
     created() {
         this.generateMenu()
-        console.log(this.menu)
     }
 }
 

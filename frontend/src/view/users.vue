@@ -2,9 +2,9 @@
     <div>User</div>
     <el-button type="primary" @click="drawer = !drawer">Drawer</el-button>
 
-    <el-drawer v-model="drawer" >
-        <template #title>
-            <span>{{title }}</span>
+    <el-drawer v-model="drawer">
+        <template #header>
+            <span>{{ title }}</span>
         </template>
 
         <template #default>

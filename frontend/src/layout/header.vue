@@ -16,7 +16,6 @@ export default {
     methods: {
         doCollapse() {
             this.isCollapse = !this.isCollapse
-            console.log(this.isCollapse)
             this.$emit("doCollapse", this.isCollapse)
         }
     }
