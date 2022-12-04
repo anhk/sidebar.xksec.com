@@ -11,3 +11,13 @@ body,
     height: 100%;
     position: relative;
 }
+
+.el-button.el-button--primary {
+    background: #6633FF;
+    border: 1px solid #6633FF;
+}
+
+.el-button.el-button--primary:hover {
+    background: #6666FF;
+    border: 1px solid #6666FF;
+}
