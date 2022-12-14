@@ -1,170 +1,246 @@
 <template>
-    <div class="container">
-        <div class="logo-details">
-            <img class="logo" src="../assets/img/logo.png" />
-            <img class="logo-name" src="../assets/img/logo-name.png" />
-        </div>
-
-        <el-menu :collapse="isCollapse" :default-active="defaultActive" mode="vertical" background-color="#11101d"
-            text-color="rgb(191, 203, 217)" active-text-color="rgb(64, 158, 255)">
-            <div v-for="(item, index) in menu" :key="index" class="nav-links">
-                <!-- 没有二级菜单的 -->
-                <el-menu-item :index="item.path" v-if="item.children.length == 0">
-                    <router-link :to="{ path: item.path }">
-                        <i class="bx" :class="item.meta.icon"></i>
-                        <span class="link_name">{{ item.meta.title }}</span>
-                    </router-link>
-                </el-menu-item>
-                <!-- 有二级菜单的 -->
-                <el-sub-menu :index="index + ''" v-else>
-                    <template v-slot:title>
-                        <i class="bx" :class="item.meta.icon"></i>
-                        <span class="link_name">{{ item.meta.title }}</span>
-                    </template>
-                    <el-menu-item v-for="(item_, index_) in item.children" :key="index_" :index="item_.path"
-                        class="sub-nav-links">
-                        <router-link :to="{ path: item_.path }">
-                            <span class="sub_link_name"> {{ item_.meta.title }}</span>
-                        </router-link>
-                    </el-menu-item>
-                </el-sub-menu>
-            </div>
-        </el-menu>
-
+  <div class="sidebar" :class="{ close: isCollapse }">
+    <div class="logo-banner">
+      <img class="logo-image" src="../assets/img/logo.png" />
+      <img class="logo-name" src="../assets/img/logo-name.png" />
     </div>
+
+    <ul class="menu-content">
+      <li
+        v-for="(item, index) in menu"
+        :key="index"
+        :class="{ showMenu: item.active }"
+      >
+        <template v-if="item.children.length == 0">
+          <router-link :to="{ path: item.path }" class="menu-item">
+            <i class="bx" :class="item.meta.icon"></i>
+            <div class="menu-label">
+              <span class="title">{{ item.meta.title }}</span>
+            </div>
+          </router-link>
+
+          <ul class="sub-menu">
+            <li>
+              <router-link :to="{ path: item.path }">
+                <span class="title">{{ item.meta.title }}</span>
+              </router-link>
+            </li>
+          </ul>
+        </template>
+
+        <div v-else>
+          <div class="menu-item" @click="doExpand(item)">
+            <i class="bx" :class="item.meta.icon"></i>
+            <div class="menu-label">
+              <span>{{ item.meta.title }} </span>
+              <i class="bx bx-chevron-down arrow"></i>
+            </div>
+          </div>
+          <ul class="sub-menu">
+            <span class="title">{{ item.meta.title }}</span>
+            <li v-for="(item_, index_) in item.children" :key="index_">
+              <router-link :to="{ path: item_.path }" :key="index_">
+                <span> {{ item_.meta.title }}</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import { mainRoutes } from '../router/router';
-import 'boxicons/css/boxicons.min.css';
+import { mainRoutes } from "../router/router";
+import "boxicons/css/boxicons.min.css";
 
 export default {
-    name: 'sidebar',
-    props: ['isCollapse'],
-    data() {
-        return {
-            menu: [],
-            defaultActive: this.$route.path
+  name: "sidebar",
+  props: ["isCollapse"],
+  data() {
+    return {
+      menu: [], // 菜单
+    };
+  },
+  methods: {
+    generateSubMenu(routes) {
+      let m = [];
+      for (const i in routes) {
+        let r = routes[i];
+        r.children = this.generateSubMenu(r.children);
+        if (routes[i].meta && routes[i].meta.menu) {
+          m.push(r);
         }
+      }
+      return m;
     },
-    methods: {
-        generateSubMenu(routes) {
-            let m = []
-            for (const i in routes) {
-                let r = routes[i]
-                r.children = this.generateSubMenu(r.children)
-                if (routes[i].meta && routes[i].meta.menu) {
-                    m.push(r)
-                }
-            }
-            return m
-        },
-        generateMenu() {// 重新生成菜单
-            this.menu = this.generateSubMenu(mainRoutes.children)
-        }
+    generateMenu() {
+      // 重新生成菜单
+      this.menu = this.generateSubMenu(mainRoutes.children);
     },
-    created() {
-        this.generateMenu()
-    }
-}
-
+    doExpand(item) {
+      item.active = !item.active;
+      console.log("active to ", item.active);
+    },
+  },
+  created() {
+    this.generateMenu();
+  },
+};
 </script>
 
 <style scoped>
-.container {
-    width: 100%;
-    height: 100%;
-    background: #11101d;
-    z-index: 100;
-    user-select: none;
-    padding: 0;
+.sidebar {
+  /* width: 100%; */
+  width: 240px;
+  height: 100%;
+  background: #11101d;
+  transition: all 0.5s ease;
+  z-index: 100;
+  user-select: none;
+}
+.sidebar a,
+.sidebar i {
+  text-decoration: none;
 }
 
-.logo-details {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+.sidebar.close {
+  width: 68px;
 }
 
-.logo-details .logo {
-    color: #fff;
-    height: 50px;
-    width: 45px;
-    margin: 0 8px 0 12px;
-    min-width: 45px;
-    text-align: center;
-    line-height: 50px;
+.sidebar .logo-banner {
+  height: 78px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
-.logo-details .logo-name {
-    width: calc(100% - 68px);
-    padding: 10px 20px 0 10px;
+.sidebar .logo-banner .logo-image {
+  max-width: 68px;
+  margin: 5px 10px 15px;
 }
 
-.nav-links li i {
-    height: 52px;
-    min-width: 48px;
-    text-align: start;
-    line-height: 50px;
-    padding: 0 0 0 3px;
-    color: #fff;
-    font-size: 25px;
-    cursor: pointer;
+.sidebar .logo-banner .logo-name {
+  max-width: calc(100% - 68px);
+  padding: 20px 10px 20px 0px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
 }
 
-.el-menu {
-    width: 100%;
-    padding: 0;
-    border: 0;
+.sidebar .menu-content {
+  height: calc(100% - 78px);
+  overflow: hidden;
 }
 
-.el-menu-item>a {
-    width: 100%;
-    color: inherit;
-    text-decoration: none;
+.sidebar.close .menu-content {
+  overflow: visible;
 }
 
-.el-aside.el-aside-collapse .el-sub-menu.is-opened .sub-nav-links {
-    display: none;
+.sidebar .sub-menu .title {
+  opacity: 0;
+  display: none;
+  height: 0;
 }
 
-.el-aside .link_name {
-    transition: all 0.5s ease;
-    transition-delay: 0.2s;
+.sidebar.close .sub-menu .title {
+  opacity: 1;
+  display: block;
+  height: auto;
 }
 
-.el-aside.el-aside-collapse .link_name {
-    display: none;
+.sub-menu li {
+  width: 100%;
+  padding: 10px 0 10px 78px;
 }
 
-
-/* el-memu-item 关闭右边的小三角 */
-.el-sub-menu :deep(.el-sub-menu__icon-arrow) {
-    display: none;
+.menu-item:hover,
+.sub-menu li:hover {
+  background: #273746;
 }
 
-.link_name {
-    font-size: 18px;
-    font-weight: 400;
-    color: #fff;
-    transition: all 0.5s ease;
-    transition-delay: 0.2s;
+.sub-menu li a {
+  width: 100%;
 }
 
-.sub_link_name {
-    color: #fff;
-    font-size: 15px;
-    padding: 5px 0 0 30px;
-    white-space: nowrap;
-    opacity: 0.6;
+.sub-menu li:has(a.router-link-active) {
+  background: #339;
 }
 
-.sub-nav-links {
-    background: #1d1b31;
+a.menu-item,
+div.menu-item {
+  display: flex;
+  /* width: 100%; */
+  height: 50px;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.sub-nav-links.is-active {
-    background: #333399;
+a.menu-item i,
+div.menu-item i {
+  color: #fff;
+  font-size: 30px;
+  height: 50px;
+  min-width: 68px;
+  text-align: center;
+  line-height: 50px;
+}
+
+a.menu-item span,
+div.menu-item span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  transition: all 0.3s, opacity 0.3s;
+  transition-delay: 0s, 0.3s;
+}
+
+.menu-content li.showMenu i.arrow {
+  transform: rotate(-180deg);
+}
+
+.sidebar.close a.menu-item span,
+.sidebar.close div.menu-item span,
+.sidebar.close .menu-content i.arrow {
+  opacity: 0;
+  transition: all 0.5s, opacity 0.1s;
+  transition-delay: 0.2s, 0s;
+}
+
+.sidebar .menu-label {
+  width: calc(100% - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+li .sub-menu {
+  background: #1d1b31;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+li.showMenu .sub-menu {
+  display: block;
+  opacity: 1;
+  height: auto;
+}
+
+li.showMenu .sub-menu span {
+  color: #fff;
+  font-size: 15px;
+  padding: 5px 0;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: none;
+}
+
+/* li.showMenu .sub-menu li {
+  padding: 10px 0;
+} */
+
+li.showMenu .sub-menu span:hover {
+  opacity: 1;
 }
 </style>
