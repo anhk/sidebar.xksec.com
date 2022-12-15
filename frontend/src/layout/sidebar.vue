@@ -6,11 +6,7 @@
     </div>
 
     <ul class="menu-content">
-      <li
-        v-for="(item, index) in menu"
-        :key="index"
-        :class="{ showMenu: item.active }"
-      >
+      <li v-for="(item, index) in menu" :key="index" :class="{ showMenu: item.active }">
         <template v-if="item.children.length == 0">
           <router-link :to="{ path: item.path }" class="menu-item">
             <i class="bx" :class="item.meta.icon"></i>
@@ -37,10 +33,7 @@
             </div>
           </div>
           <ul class="sub-menu">
-            <div
-              v-if="isCollapse && item.active"
-              v-click-outside="() => doExpand(item)"
-            ></div>
+            <div v-if="isCollapse && item.active" v-click-outside="() => doExpand(item)"></div>
             <span class="title">{{ item.meta.title }}</span>
             <li v-for="(item_, index_) in item.children" :key="index_">
               <router-link :to="{ path: item_.path }" :key="index_">
@@ -110,6 +103,7 @@ export default {
   z-index: 100;
   user-select: none;
 }
+
 .sidebar a,
 .sidebar i {
   text-decoration: none;
@@ -262,7 +256,7 @@ li.showMenu .sub-menu span:hover {
   display: block;
 }
 
-.sidebar.close li.showMenu .sub-menu > span {
+.sidebar.close li.showMenu .sub-menu>span {
   padding: 10px 0 10px 20px;
   font-size: 18px;
   width: 120px;
