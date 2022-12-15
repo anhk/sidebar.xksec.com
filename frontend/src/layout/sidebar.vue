@@ -85,16 +85,13 @@ export default {
     doExpand(item) {
       // 打开一个菜单
       if (item.active) {
-        this.doUnexpand(item);
+        item.active = false;
         return;
       }
       for (const i in this.menu) {
         this.menu[i].active = false;
       }
       item.active = true;
-    },
-    doUnexpand(item) {
-      item.active = false;
     },
   },
   created() {
