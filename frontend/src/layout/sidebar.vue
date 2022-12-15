@@ -37,6 +37,10 @@
             </div>
           </div>
           <ul class="sub-menu">
+            <div
+              v-if="isCollapse && item.active"
+              v-click-outside="() => doExpand(item)"
+            ></div>
             <span class="title">{{ item.meta.title }}</span>
             <li v-for="(item_, index_) in item.children" :key="index_">
               <router-link :to="{ path: item_.path }" :key="index_">
@@ -79,8 +83,18 @@ export default {
       this.menu = this.generateSubMenu(mainRoutes.children);
     },
     doExpand(item) {
-      item.active = !item.active;
-      console.log("active to ", item.active);
+      // 打开一个菜单
+      if (item.active) {
+        this.doUnexpand(item);
+        return;
+      }
+      for (const i in this.menu) {
+        this.menu[i].active = false;
+      }
+      item.active = true;
+    },
+    doUnexpand(item) {
+      item.active = false;
     },
   },
   created() {
@@ -242,5 +256,23 @@ li.showMenu .sub-menu span {
 
 li.showMenu .sub-menu span:hover {
   opacity: 1;
+}
+
+.sidebar.close li.showMenu .sub-menu {
+  position: fixed;
+  left: 72px;
+  transform: translateY(-50px);
+  display: block;
+}
+
+.sidebar.close li.showMenu .sub-menu > span {
+  padding: 10px 0 10px 20px;
+  font-size: 18px;
+  width: 120px;
+}
+
+.sidebar.close li.showMenu .sub-menu li {
+  padding: 10px 0 10px 20px;
+  width: 120px;
 }
 </style>
