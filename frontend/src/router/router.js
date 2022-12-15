@@ -29,6 +29,25 @@ export const mainRoutes = {
         },
       ],
     },
+    {
+      path: "/users",
+      meta: { title: "用户管理", icon: "bx-user", menu: true },
+      children: [
+        {
+          path: "/users/users",
+          meta: { title: "用户管理", menu: true },
+          component: () => import("../view/users.vue"),
+        },
+        {
+          path: "/users/roles",
+          meta: { title: "角色管理", menu: true },
+          component: () => import("../view/roles.vue"),
+        },
+        {
+          path: "/users/groups",
+        },
+      ],
+    },
   ],
 };
 
