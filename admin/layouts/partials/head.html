@@ -1,0 +1,5 @@
+
+<link href='/css/boxicons-2.1.4.min.css' rel='stylesheet'>
+
+{{ $css := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+<link href="{{ $css.RelPermalink }}" rel="stylesheet" />

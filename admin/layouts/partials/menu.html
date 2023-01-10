@@ -1,0 +1,29 @@
+<ul class="menu">
+    <li>
+        <div>
+            <span> {{ partial "icon" "home" }} 首页 </span>
+        </div>
+    </li>
+    <li>
+        <div>
+            {{ partial "icon" "user" }}
+            <span> 用户管理</span>
+            {{ partial "icon" "chevron-down" }}
+        </div>
+        <ul class="sub-menu">
+            <li> <span>用户</span></li>
+            <li> <span>用户组</span></li>
+        </ul>
+    </li>
+    <li>
+        <div>
+            {{ partial "icon" "data" }}
+            <span> 资产管理 </span>
+            {{ partial "icon" "chevron-down" }}
+        </div>
+        <ul class="sub-menu">
+            <li> <span>资产</span></li>
+            <li> <span>资产组</span></li>
+        </ul>
+    </li>
+</ul>
