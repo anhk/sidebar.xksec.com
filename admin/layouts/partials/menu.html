@@ -1,7 +1,8 @@
 <ul class="menu">
     <li>
         <div>
-            <span> {{ partial "icon" "home" }} 首页 </span>
+            {{ partial "icon" "home" }}
+            <span> 首页 </span>
         </div>
     </li>
     <li>
@@ -27,3 +28,11 @@
         </ul>
     </li>
 </ul>
+
+<script>
+    $("ul.menu > li > div").click(function(){
+        $(this).find('.bx-chevron-down').toggleClass('active')
+        $(this).parent().find('ul.sub-menu').toggleClass('active')
+        $(this).parent().toggleClass('active')
+    })
+</script>
