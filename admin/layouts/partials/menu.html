@@ -30,9 +30,20 @@
 </ul>
 
 <script>
-    $("ul.menu > li > div").click(function(){
-        $(this).find('.bx-chevron-down').toggleClass('active')
-        $(this).parent().find('ul.sub-menu').toggleClass('active')
-        $(this).parent().toggleClass('active')
+    $("ul.menu > li > div").click(function () {
+        var shouldActive = true
+        if ($(this).parent().is(".active")) {
+            shouldActive = false
+        }
+
+        $("ul.menu > li > div").find('.bx-chevron-down').removeClass('active')
+        $("ul.menu > li").find('ul.sub-menu').removeClass('active') 
+        $("ul.menu > li").removeClass('active')
+
+        if (shouldActive === true) {
+            $(this).find('.bx-chevron-down').addClass('active')
+            $(this).parent().find('ul.sub-menu').addClass('active')
+            $(this).parent().addClass('active')
+        }
     })
 </script>
